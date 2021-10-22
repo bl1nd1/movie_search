@@ -2,10 +2,12 @@
 
 require 'movies.php';
 
+
+
 echo "What's your age?\n";
 $userAge = readline();
 
-if ($userAge < 0)
+if (!is_numeric($userAge) || (int)$userAge < 0)
 {
 	return 0;
 }
@@ -15,7 +17,7 @@ $recommendedFilms = [];
 /** @var TYPE_NAME $movies */
 foreach ($movies as $film)
 {
-	if ($film['age_restriction'] <= $userAge)
+	if ($film['age_restriction'] <= (int)$userAge)
 	{
 		$recommendedFilms[] = $film;
 	}
